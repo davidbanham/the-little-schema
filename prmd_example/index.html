@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="vendor/github-markdown.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="vendor/github.min.css">
+
+</head>
+<body>
+  <div class="markdown-body"><h2 id="transactions">Transactions</h2>
+    <p>A Transaction occurs when an order is placed or a refund is processed.</p>
+    <h3 id="attributes">Attributes</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>id</strong></td>
+          <td><em>uuid</em></td>
+          <td>internal unique identifier of Transaction</td>
+          <td><code>"01234567-89ab-cdef-0123-456789abcdef"</code></td>
+        </tr>
+        <tr>
+          <td><strong>order_id</strong></td>
+          <td><em>string</em></td>
+          <td>unique identifier of the order this transaction is associated with</td>
+          <td><code>"01234567-89ab-cdef-0123-456789abcdef"</code></td>
+        </tr>
+        <tr>
+          <td><strong>category</strong></td>
+          <td><em>string</em></td>
+          <td>Type of the transaction [P (Purchase), R (Refund)]</td>
+          <td><code>"P"</code></td>
+        </tr>
+        <tr>
+          <td><strong>member:name:surname</strong></td>
+          <td><em>string</em></td>
+          <td>surname of the person associated with the transaction</td>
+          <td><code>"Jones"</code></td>
+        </tr>
+        <tr>
+          <td><strong>member:name:initial</strong></td>
+          <td><em>string</em></td>
+          <td>first initial of the person associated with the transaction</td>
+          <td><code>"N"</code></td>
+        </tr>
+        <tr>
+          <td><strong>member:name:salutation</strong></td>
+          <td><em>string</em></td>
+          <td>Title of the person</td>
+          <td><code>"Mr"</code></td>
+        </tr>
+        <tr>
+          <td><strong>member:email</strong></td>
+          <td><em>email</em></td>
+          <td>Email address</td>
+          <td><code>"nickjones@example.com"</code></td>
+        </tr>
+        <tr>
+          <td><strong>member:membership_number</strong></td>
+          <td><em>number</em></td>
+          <td>membership number<br> <strong>Range:</strong> <code>0 &lt;= value &lt;= 9999999999999999</code></td>
+          <td><code>1234567891234567</code></td>
+        </tr>
+        <tr>
+          <td><strong>transaction_date</strong></td>
+          <td><em>date-time</em></td>
+          <td>when transaction was performed by the client</td>
+          <td><code>"2012-01-01T12:00:00Z"</code></td>
+        </tr>
+        <tr>
+          <td><strong>product_description</strong></td>
+          <td><em>string</em></td>
+          <td>descriptive text for the product being purchased</td>
+          <td><code>"Pie and chips"</code></td>
+        </tr>
+        <tr>
+          <td><strong>payment:amount</strong></td>
+          <td><em>number</em></td>
+          <td></td>
+          <td><code>40.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>payment:gst</strong></td>
+          <td><em>number</em></td>
+          <td></td>
+          <td><code>4.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>payment:total</strong></td>
+          <td><em>number</em></td>
+          <td></td>
+          <td><code>44.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>payment:card_type</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"Mastercard"</code></td>
+        </tr>
+        <tr>
+          <td><strong>vouchers</strong></td>
+          <td><em>array</em></td>
+          <td></td>
+          <td><code>[{"id"=&gt;"asd123", "category"=&gt;"child", "expiry"=&gt;"2012-01-01", "amount"=&gt;11.0, "gst"=&gt;1.1, "total"=&gt;12.1}]</code></td>
+        </tr>
+        <tr>
+          <td><strong>commission:rate</strong></td>
+          <td><em>number</em></td>
+          <td><br> <strong>Range:</strong> <code>0 &lt;= value &lt;= 100</code></td>
+          <td><code>30</code></td>
+        </tr>
+        <tr>
+          <td><strong>commission:value</strong></td>
+          <td><em>number</em></td>
+          <td></td>
+          <td><code>18.25</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:gifted</strong></td>
+          <td><em>boolean</em></td>
+          <td></td>
+          <td><code>true</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:giftee</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"Joe Bloggs"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:channel</strong></td>
+          <td><em>string</em></td>
+          <td>Whether the items will be delivered by post (P) or email (E)</td>
+          <td><code>"P"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:line1</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"Building 1"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:line2</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"123 Fake St"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:suburb</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"Fakington"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:post_code</strong></td>
+          <td><em>number</em></td>
+          <td><br> <strong>Range:</strong> <code>800 &lt;= value &lt;= 7799</code></td>
+          <td><code>2000</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:city</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"Sydney"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:state</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"NSW"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:email</strong></td>
+          <td><em>email</em></td>
+          <td></td>
+          <td><code>"joebloggs@example.com"</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="transactions-create">Transactions Create</h3>
+    <p>Create a new transaction.</p>
+    <pre class="hljs"><code>POST /transaction
+    </code></pre><h4 id="required-parameters">Required Parameters</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>order_id</strong></td>
+          <td><em>string</em></td>
+          <td>unique identifier of the order this transaction is associated with</td>
+          <td><code>"01234567-89ab-cdef-0123-456789abcdef"</code></td>
+        </tr>
+        <tr>
+          <td><strong>category</strong></td>
+          <td><em>string</em></td>
+          <td>Type of the transaction [P (Purchase), R (Refund)]</td>
+          <td><code>"P"</code></td>
+        </tr>
+        <tr>
+          <td><strong>member:name:surname</strong></td>
+          <td><em>string</em></td>
+          <td>surname of the person associated with the transaction</td>
+          <td><code>"Jones"</code></td>
+        </tr>
+        <tr>
+          <td><strong>member:name:initial</strong></td>
+          <td><em>string</em></td>
+          <td>first initial of the person associated with the transaction</td>
+          <td><code>"N"</code></td>
+        </tr>
+        <tr>
+          <td><strong>member:name:salutation</strong></td>
+          <td><em>string</em></td>
+          <td>Title of the person</td>
+          <td><code>"Mr"</code></td>
+        </tr>
+        <tr>
+          <td><strong>member:email</strong></td>
+          <td><em>email</em></td>
+          <td>Email address</td>
+          <td><code>"nickjones@example.com"</code></td>
+        </tr>
+        <tr>
+          <td><strong>member:membership_number</strong></td>
+          <td><em>number</em></td>
+          <td>membership number<br> <strong>Range:</strong> <code>0 &lt;= value &lt;= 9999999999999999</code></td>
+          <td><code>1234567891234567</code></td>
+        </tr>
+        <tr>
+          <td><strong>transaction_date</strong></td>
+          <td><em>date-time</em></td>
+          <td>when transaction was performed by the client</td>
+          <td><code>"2012-01-01T12:00:00Z"</code></td>
+        </tr>
+        <tr>
+          <td><strong>product_description</strong></td>
+          <td><em>string</em></td>
+          <td>descriptive text for the product being purchased</td>
+          <td><code>"Pie and chips"</code></td>
+        </tr>
+        <tr>
+          <td><strong>payment:amount</strong></td>
+          <td><em>number</em></td>
+          <td></td>
+          <td><code>40.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>payment:gst</strong></td>
+          <td><em>number</em></td>
+          <td></td>
+          <td><code>4.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>payment:total</strong></td>
+          <td><em>number</em></td>
+          <td></td>
+          <td><code>44.0</code></td>
+        </tr>
+        <tr>
+          <td><strong>payment:card_type</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"Mastercard"</code></td>
+        </tr>
+        <tr>
+          <td><strong>vouchers</strong></td>
+          <td><em>array</em></td>
+          <td></td>
+          <td><code>[{"id"=&gt;"asd123", "category"=&gt;"child", "expiry"=&gt;"2012-01-01", "amount"=&gt;11.0, "gst"=&gt;1.1, "total"=&gt;12.1}]</code></td>
+        </tr>
+        <tr>
+          <td><strong>commission:rate</strong></td>
+          <td><em>number</em></td>
+          <td><br> <strong>Range:</strong> <code>0 &lt;= value &lt;= 100</code></td>
+          <td><code>30</code></td>
+        </tr>
+        <tr>
+          <td><strong>commission:value</strong></td>
+          <td><em>number</em></td>
+          <td></td>
+          <td><code>18.25</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:gifted</strong></td>
+          <td><em>boolean</em></td>
+          <td></td>
+          <td><code>true</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:giftee</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"Joe Bloggs"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:channel</strong></td>
+          <td><em>string</em></td>
+          <td>Whether the items will be delivered by post (P) or email (E)</td>
+          <td><code>"P"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:line1</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"Building 1"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:line2</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"123 Fake St"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:suburb</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"Fakington"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:post_code</strong></td>
+          <td><em>number</em></td>
+          <td><br> <strong>Range:</strong> <code>800 &lt;= value &lt;= 7799</code></td>
+          <td><code>2000</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:city</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"Sydney"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:address:state</strong></td>
+          <td><em>string</em></td>
+          <td></td>
+          <td><code>"NSW"</code></td>
+        </tr>
+        <tr>
+          <td><strong>delivery:email</strong></td>
+          <td><em>email</em></td>
+          <td></td>
+          <td><code>"joebloggs@example.com"</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <h4 id="optional-parameters">Optional Parameters</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>id</strong></td>
+          <td><em>uuid</em></td>
+          <td>internal unique identifier of Transaction</td>
+          <td><code>"01234567-89ab-cdef-0123-456789abcdef"</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <h4 id="curl-example">Curl Example</h4>
+    <pre class="lang-bash hljs"><code class="lang-bash">$ curl -n -X POST https://localhost:<span class="hljs-number">3000</span>/transaction \
+  -H <span class="hljs-string">"Content-Type: application/json"</span> \
+ \
+  <span class="hljs-operator">-d</span> <span class="hljs-string">'{
+  "id": "01234567-89ab-cdef-0123-456789abcdef",
+  "order_id": "01234567-89ab-cdef-0123-456789abcdef",
+  "category": "P",
+  "member": {
+    "name": {
+      "surname": "Jones",
+      "initial": "N",
+      "salutation": "Mr"
+    },
+    "email": "nickjones@example.com",
+    "membership_number": 1234567891234567
+  },
+  "transaction_date": "2012-01-01T12:00:00Z",
+  "product_description": "Pie and chips",
+  "payment": {
+    "amount": 40.0,
+    "gst": 4.0,
+    "total": 44.0,
+    "card_type": "Mastercard"
+  },
+  "vouchers": [
+    {
+      "id": "asd123",
+      "category": "child",
+      "expiry": "2012-01-01",
+      "amount": 11.0,
+      "gst": 1.1,
+      "total": 12.1
+    }
+  ],
+  "commission": {
+    "rate": 30,
+    "value": 18.25
+  },
+  "delivery": {
+    "gifted": true,
+    "giftee": "Joe Bloggs",
+    "channel": "P",
+    "address": {
+      "line1": "Building 1",
+      "line2": "123 Fake St",
+      "suburb": "Fakington",
+      "post_code": 2000,
+      "city": "Sydney",
+      "state": "NSW"
+    },
+    "email": "joebloggs@example.com"
+  }
+}'</span>
+    </code></pre>
+    <h4 id="response-example">Response Example</h4>
+    <pre class="hljs"><code>HTTP/1.1 201 Created
+    </code></pre><pre class="lang-json hljs"><code class="lang-json">{
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"01234567-89ab-cdef-0123-456789abcdef"</span></span>,
+  "<span class="hljs-attribute">order_id</span>": <span class="hljs-value"><span class="hljs-string">"01234567-89ab-cdef-0123-456789abcdef"</span></span>,
+  "<span class="hljs-attribute">category</span>": <span class="hljs-value"><span class="hljs-string">"P"</span></span>,
+  "<span class="hljs-attribute">member</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">surname</span>": <span class="hljs-value"><span class="hljs-string">"Jones"</span></span>,
+      "<span class="hljs-attribute">initial</span>": <span class="hljs-value"><span class="hljs-string">"N"</span></span>,
+      "<span class="hljs-attribute">salutation</span>": <span class="hljs-value"><span class="hljs-string">"Mr"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"nickjones@example.com"</span></span>,
+    "<span class="hljs-attribute">membership_number</span>": <span class="hljs-value"><span class="hljs-number">1234567891234567</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">transaction_date</span>": <span class="hljs-value"><span class="hljs-string">"2012-01-01T12:00:00Z"</span></span>,
+  "<span class="hljs-attribute">product_description</span>": <span class="hljs-value"><span class="hljs-string">"Pie and chips"</span></span>,
+  "<span class="hljs-attribute">payment</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">40.0</span></span>,
+    "<span class="hljs-attribute">gst</span>": <span class="hljs-value"><span class="hljs-number">4.0</span></span>,
+    "<span class="hljs-attribute">total</span>": <span class="hljs-value"><span class="hljs-number">44.0</span></span>,
+    "<span class="hljs-attribute">card_type</span>": <span class="hljs-value"><span class="hljs-string">"Mastercard"</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">vouchers</span>": <span class="hljs-value">[
+    {
+      "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"asd123"</span></span>,
+      "<span class="hljs-attribute">category</span>": <span class="hljs-value"><span class="hljs-string">"child"</span></span>,
+      "<span class="hljs-attribute">expiry</span>": <span class="hljs-value"><span class="hljs-string">"2012-01-01"</span></span>,
+      "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">11.0</span></span>,
+      "<span class="hljs-attribute">gst</span>": <span class="hljs-value"><span class="hljs-number">1.1</span></span>,
+      "<span class="hljs-attribute">total</span>": <span class="hljs-value"><span class="hljs-number">12.1</span>
+    </span>}
+  ]</span>,
+  "<span class="hljs-attribute">commission</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">rate</span>": <span class="hljs-value"><span class="hljs-number">30</span></span>,
+    "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">18.25</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">delivery</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">gifted</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">giftee</span>": <span class="hljs-value"><span class="hljs-string">"Joe Bloggs"</span></span>,
+    "<span class="hljs-attribute">channel</span>": <span class="hljs-value"><span class="hljs-string">"P"</span></span>,
+    "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">line1</span>": <span class="hljs-value"><span class="hljs-string">"Building 1"</span></span>,
+      "<span class="hljs-attribute">line2</span>": <span class="hljs-value"><span class="hljs-string">"123 Fake St"</span></span>,
+      "<span class="hljs-attribute">suburb</span>": <span class="hljs-value"><span class="hljs-string">"Fakington"</span></span>,
+      "<span class="hljs-attribute">post_code</span>": <span class="hljs-value"><span class="hljs-number">2000</span></span>,
+      "<span class="hljs-attribute">city</span>": <span class="hljs-value"><span class="hljs-string">"Sydney"</span></span>,
+      "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"NSW"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"joebloggs@example.com"</span>
+  </span>}
+</span>}
+  </code></pre>
+  </div>
+
+  <script src="vendor/jquery.min.js"></script>
+  <script src="vendor/highlight.min.js"></script>
+  <script>
+    hljs.configure({languages: []})
+
+      $('code').each(function(_, block){
+        $(this).parent().addClass($(this).attr('class'))
+      })
+      $('pre').each(function(_, block){
+        hljs.highlightBlock(block);
+      })
+  </script>
+</body>
+</html>
