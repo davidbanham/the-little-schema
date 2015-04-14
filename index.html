@@ -95,6 +95,8 @@
             </p>
             <aside class="notes">
               Just the best marketing website ever.
+
+              The first draft was published by the IETF in 2009. We're currently on draft v4 which was published in Jan 2013.
             </aside>
           </section>
           <section>
@@ -106,6 +108,9 @@
   "type": "string"
 }
             </code></pre>
+            <aside class="notes">
+              Simple definition of an ISOString() timestamp. There are a few built-in format verifiers that come with regexes.
+            </aside>
           </section>
           <section>
             <pre><code data-trim contenteditable class="json">
@@ -117,6 +122,11 @@
   "maxLength": 100
 }
             </code></pre>
+            <aside class="notes">
+              Email is another inbuilt type, which is handy.
+
+              This example also shows a maxLength property. It's trivial to mix and match validations so suit your needs.
+            </aside>
           </section>
           <section>
             <pre><code data-trim contenteditable class="json">
@@ -131,6 +141,13 @@
   ]
 }
             </code></pre>
+            <aside class="notes">
+              Arrays of options are very handy.
+
+              There are lots of other validation types. Using multipleOf to catch floating point errored numbers is a favourite of mine.
+
+              JSON Schema is a really rich, well thought-out validation system. It's way better than the random collection of validation snippets you've probably hacked together over time.
+            </aside>
           </section>
         </section>
         <section>
@@ -161,6 +178,11 @@
         "delivery"
       ],
             </code></pre>
+            <aside class="notes">
+              Hyper schemas are a superset of JSON schemas. They take many JSON schemas and describe how they should be composed into HTTP APIs.
+
+              You get methods, required and optional variables, examples, expected responses, etc etc.
+            </aside>
           </section>
         </section>
         <section>
@@ -184,6 +206,13 @@
             <br>
             <a href="https://blog.heroku.com/archives/2014/1/9/auto_generating_a_go_api_client_for_heroku">Auto Generating a Go API client for Heroku</a>
             </p>
+            <aside class="notes">
+              This is just the list of benefits casually tossed off by Heroku when they documented their API with a hyper schema.
+
+              Automatic generation of API client libraries in multiple languages. That is _impressive_.
+
+              Not even mentioned is the awesome validation toolchain you get for free.
+            </aside>
           </section>
           <section>
             <h3>Docson</h3>
@@ -191,16 +220,27 @@
             <a href="http://lbovet.github.io/docson/index.html#/docson/examples/example.json">http://lbovet.github.io/docson/index.html#/docson/examples/example.json</a>
             </small>
             <iframe src="http://lbovet.github.io/docson/index.html#/docson/examples/example.json" width="100%" height="600px"></iframe>
+            <aside class="notes">
+              Docson is a documentation tool for JSON schemas. It's a pretty thing that you get totally for free. It just generates this.
+            </aside>
           </section>
           <section>
             <h3>prmd</h3>
             <iframe src="prmd_example/index.html" width="100%" height="600px"></iframe>
+            <aside class="notes">
+              prmd is a documentation tool for JSON hyper schemas. It also has some handy tooling to generate boilerplate for you.
+
+              This is way better documentation than I would ever write by hand. All this stuff would be a nightmare to keep manually updated. It's just done for you.
+            </aside>
           </section>
         </section>
         <section>
           <section>
             <h3>More goodies!</h3>
             <iframe src="http://json-schema.org/implementations.html" width="100%" height="600px"></iframe>
+            <aside class="notes">
+              This is the benefit that standards bring us. We all work on the web. We all know that life is better when things like browsers are standards-compliant. This is the same principle.
+            </aside>
           </section>
           <section>
             <h3>Get involved</h3>
@@ -208,6 +248,9 @@
             <br>
             <br>
             <a href="https://github.com/Prismatik/document_validator">https://github.com/Prismatik/document_validator</a>
+            <aside class="notes">
+              We're taking this stuff to it's logical conclusion. Tools like lazily evaluated database migrations. You should be able to modify your database schema without having to take your app down while you modify every single record in your database. Especially if you actually have a lot of data. You also shouldn't have to be handcuffed by how your data looked years ago when developing a feature today. We're building tooling to help with that. If that sounds fun, we'd love to have you on board.
+            </aside>
           </section>
           <section>
             <h3>More information</h3>
